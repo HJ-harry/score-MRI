@@ -2,6 +2,8 @@
 
 [![arXiv](https://img.shields.io/badge/arXiv-2110.05243-red)](https://arxiv.org/abs/2110.05243)![PyTorch](https://img.shields.io/badge/PyTorch-%23EE4C2C.svg?style=for-the-badge&logo=PyTorch&logoColor=white)
 
+![concept](./assets/concept.png)
+
 Official PyTorch implementation of ```score-POCS```. Code was modified from [this repo](https://github.com/yang-song/score_sde_pytorch).
 
 > **Score-based diffusion models for accelerated MRI**<br>
