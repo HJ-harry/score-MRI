@@ -1,6 +1,15 @@
 # Score-POCS for accelerated MRI
 
-This project contains the implementation of ```score-POCS```, introduced in this [paper](https://arxiv.org/abs/2110.05243).
+[![arXiv](https://img.shields.io/badge/arXiv-2110.05243-red)](https://arxiv.org/abs/2110.05243)![PyTorch](https://img.shields.io/badge/PyTorch-%23EE4C2C.svg?style=for-the-badge&logo=PyTorch&logoColor=white)
+
+Official PyTorch implementation of ```score-POCS```. Code was modified from [this repo](https://github.com/yang-song/score_sde_pytorch).
+
+> **Score-based diffusion models for accelerated MRI**<br>
+> [Hyungjin Chung](https://hj-chung.com) and [Jong Chul Ye](https://bispl.weebly.com/professor.html) <br>
+> Medical Image Analysis 2022
+> 
+>**Abstract**: <br>
+>Score-based diffusion models provide a powerful way to model images using the gradient of the data distribution. Leveraging the learned score function as a prior, here we introduce a way to sample data from a conditional distribution given the measurements, such that the model can be readily used for solving inverse problems in imaging, especially for accelerated MRI. In short, we train a continuous time-dependent score function with denoising score matching. Then, at the inference stage, we iterate between the numerical SDE solver and data consistency  step to achieve reconstruction. Our model requires magnitude images only for training, and yet is able to reconstruct complex-valued data, and even extends to parallel imaging. The proposed method is agnostic to sub-sampling patterns and has excellent generalization capability so that it can be used with any sampling schemes for any body parts that are not used for training data. Also, due to its generative nature, our approach can quantify uncertainty, which is not possible with standard regression settings. On top of all the advantages, our method also has very strong performance, even beating the models trained with full supervision. With extensive experiments, we verify the superiority of our method in terms of quality and practicality.
 
 ## Brief explanation of the inference procedure
 
@@ -60,12 +69,12 @@ In order to specify the mask to use for under-sampling, control the following: `
 The ```mask_type``` argument will be one of ```'gaussian1d`, 'uniform1d', 'gaussian2d' ```. For example, one can run the below command.
 
 ```python
-python inference.py --task 'retrospective' \
+python inference_real.py --task 'retrospective' \
                     --data '001' \
                     --mask_type 'gaussian1d' \
                     --acc_factor 4 \
                     --center_fraction 0.08 \
-                    --N 500
+                    --N 2000
 ```
 
 ### Prospective inference
@@ -74,9 +83,35 @@ You can also perform prospective inference, given that you have matching pairs o
 We expect the matching filnames be ```{filename}.npy, {filename}_mask.npy```. In this case, you can run, for example, the following:
 
 ```python
-python inference.py --task 'prospective' \
+python inference_real.py --task 'prospective' \
                     --data '001' \
-                    --N 500
+                    --N 2000
 ```
 
+### Other solvers
+
+You can run analagous commands also with ```inference_single-coil.py```, ```inference_multi-coil_SSOS.py```, and ```inference_multi-coil_hybrid.py```. These files correspond to solving the following algorithms from the paper:
+- ```inference_single-coil.py```: Algorithm 3
+- ```inference_multi-coil_SSOS.py```: Algorithm 4
+- ```inference_multi-coil_hybrid.py```: Algorithm 5
+
+## Training your model from scratch
+
+You may train your model from scratch with, e.g. ```train_fastmri_knee.sh```. Note that you must have your training data ready, and modify the config file being used.
+
+## Related Works
+
+We list here several outstanding works that also aim to solve MRI reconstruction in a similar fashion. 
+- Solving Inverse Problems in Medical Imaging with Score-Based Generative Models: [paper](https://openreview.net/forum?id=4rFAhgrA0lA)
+- Robust compressed sensing using generative models: [paper](https://proceedings.neurips.cc/paper/2020/hash/07cb5f86508f146774a2fac4373a8e50-Abstract.html), [code](https://github.com/utcsilab/csgm-mri-langevin)
+
+## Citation
+If you find our work interesting, please consider citing
+
+  @article{chung2021score,
+    title={Score-based diffusion models for accelerated MRI},
+    author={Chung, Hyungjin and Ye, Jong Chul},
+    journal={arXiv preprint arXiv:2110.05243},
+    year={2021}
+  }
 
