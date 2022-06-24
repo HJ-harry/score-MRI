@@ -14,7 +14,7 @@
 ###########
 build/
 dist/
-pysap_mri.egg-info/
+*.egg-info/
 __pycache__/
 .eggs/
 
