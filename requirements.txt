@@ -7,3 +7,4 @@ ml_collections
 sigpy
 h5py
 tensorflow
+Ninja
