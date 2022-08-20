@@ -1,9 +1,9 @@
-# Score-POCS for accelerated MRI
+# Score-based diffusion model for accelerated MRI
 
 [![arXiv](https://img.shields.io/badge/arXiv-2110.05243-red)](https://arxiv.org/abs/2110.05243)
 ![concept](./assets/concept.png)
 
-Official PyTorch implementation of ```score-POCS```. Code was modified from [this repo](https://github.com/yang-song/score_sde_pytorch).
+Official PyTorch implementation of ```score-MRI```. Code was modified from [this repo](https://github.com/yang-song/score_sde_pytorch).
 
 > **Score-based diffusion models for accelerated MRI**<br>
 > [Hyungjin Chung](https://hj-chung.com) and [Jong Chul Ye](https://bispl.weebly.com/professor.html) <br>
@@ -110,11 +110,13 @@ We list here several outstanding works that also aim to solve MRI reconstruction
 If you find our work interesting, please consider citing
 
 ```
-  @article{chung2021score,
-    title={Score-based diffusion models for accelerated MRI},
-    author={Chung, Hyungjin and Ye, Jong Chul},
-    journal={arXiv preprint arXiv:2110.05243},
-    year={2021}
-  }
+@article{chung2022score,
+  title={Score-based diffusion models for accelerated MRI},
+  author={Chung, Hyungjin and Ye, Jong Chul},
+  journal={Medical Image Analysis},
+  pages={102479},
+  year={2022},
+  publisher={Elsevier}
+}
 ```
 
